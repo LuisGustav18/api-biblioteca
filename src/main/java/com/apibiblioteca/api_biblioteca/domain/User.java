@@ -10,22 +10,22 @@ import java.util.Set;
 
 @Data
 @Document
-public class Usuario implements Serializable {
+public class User implements Serializable {
 
     @Id
     private String id;
-    private String nome;
+    private String name;
     private String email;
-    private String senha;
-    private Set<Livro> listaDeDesejo = new HashSet<>();
+    private String password;
+    private Set<Book> wishlist = new HashSet<>();
 
-    public Usuario (){
+    public User(){
 
     }
 
-    public Usuario(String id, String nome, String email, String senha) {
-        this.nome = nome;
+    public User(String id, String name, String email, String password) {
+        this.name = name;
         this.email = email;
-        this.senha = senha;
+        this.password = password;
     }
 }

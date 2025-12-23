@@ -11,10 +11,10 @@ import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-public class ConfiguracaoSeguranca {
+public class ConfigSecurity {
 
     @Bean
-    SecurityFilterChain getSeguranca(HttpSecurity htpp){
+    SecurityFilterChain getSecurity(HttpSecurity htpp){
         htpp.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth.requestMatchers("/ws**", "/ws/**")
@@ -24,12 +24,12 @@ public class ConfiguracaoSeguranca {
     }
 
     @Bean
-    PasswordEncoder getCriptografiaSenha(){
+    PasswordEncoder getCriptPassowrda(){
         return new BCryptPasswordEncoder();
     }
 
     @Bean
-    WebMvcConfigurer  corConfiguracao(){
+    WebMvcConfigurer  corConfigurer(){
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {

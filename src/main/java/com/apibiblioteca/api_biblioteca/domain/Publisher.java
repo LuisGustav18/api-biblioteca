@@ -10,15 +10,14 @@ import java.util.Set;
 
 @Data
 @Document
-public class Editora implements Serializable {
+public class Publisher implements Serializable {
 
     @Id
     private String id;
-    private String nome;
-    private Set<Livro> livro = new HashSet<>();
+    private String name;
 
-    public Editora(String id, String nome, Set<Livro> livro) {
-        this.nome = nome;
+    public Publisher(String id, String name) {
+        this.name = name;
     }
 
 }
