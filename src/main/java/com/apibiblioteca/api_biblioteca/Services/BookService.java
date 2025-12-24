@@ -40,19 +40,18 @@ public class BookService {
     }
 
     public Book update(Book obj){
-        Book newobj = findById(obj.getId());
-        updateData(newobj, obj);
-        return repo.save(newobj);
+        Book newObj = findById(obj.getId());
+        updateData(newObj, obj);
+        return repo.save(newObj);
     }
 
-    private void updateData(Book newobj, Book obj){
-        newobj.setId(obj.getId());
-        newobj.setTitle(obj.getTitle());
-        newobj.setReleaseYear(obj.getReleaseYear());
-        newobj.setIsbn(obj.getIsbn());
-        newobj.setPublisherId(obj.getPublisherId());
-        newobj.setCondition(obj.getCondition());
-        newobj.setStatus(obj.getStatus());
+    private void updateData(Book newObj, Book obj){
+        newObj.setTitle(obj.getTitle());
+        newObj.setReleaseYear(obj.getReleaseYear());
+        newObj.setIsbn(obj.getIsbn());
+        newObj.setPublisherId(obj.getPublisherId());
+        newObj.setCondition(obj.getCondition());
+        newObj.setStatus(obj.getStatus());
     }
 
     private Publisher findPublisher(Book obj){
