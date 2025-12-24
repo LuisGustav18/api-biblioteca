@@ -1,7 +1,9 @@
 package com.apibiblioteca.api_biblioteca.domain;
 
+import com.apibiblioteca.api_biblioteca.dto.BookDTO;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.io.Serializable;
@@ -17,6 +19,8 @@ public class User implements Serializable {
     private String name;
     private String email;
     private String password;
+
+    @DBRef
     private Set<Book> wishlist = new HashSet<>();
 
     public User(){

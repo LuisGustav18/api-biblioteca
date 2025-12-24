@@ -54,7 +54,7 @@ public class BookService {
         newObj.setStatus(obj.getStatus());
     }
 
-    private Publisher findPublisher(Book obj){
+    public Publisher findPublisher(Book obj){
         return publisherRepository.findById(obj.getPublisherId())
                 .orElseThrow(() -> new ObjectNotFoundException("Publisher not found"));
     }

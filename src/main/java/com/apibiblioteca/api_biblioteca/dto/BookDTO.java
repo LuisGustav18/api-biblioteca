@@ -29,4 +29,14 @@ public class BookDTO implements Serializable {
         this.condition = condition;
         this.status = status;
     }
+
+    public BookDTO(Book obj, String namePublisher){
+        this.id = obj.getId();
+        this.title = obj.getTitle();
+        this.releaseYear = obj.getReleaseYear();
+        this.author = obj.getAuthor();
+        this.publisherName = namePublisher;
+        this.condition = obj.getCondition().name();
+        this.status = obj.getStatus().name();
+    }
 }

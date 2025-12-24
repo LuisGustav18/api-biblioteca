@@ -31,9 +31,8 @@ public class PublisherService {
     }
 
     public void delete(String id){
-        Publisher findCorrect = findById(id);
-        bookRepository.findAll().stream().filter(x -> x.getPublisherId().equals(findCorrect.getId())).forEach(x -> bookRepository.delete(x));
-        repo.delete(findCorrect);
+        bookRepository.deleteByPublisherId(id);
+        repo.delete(findById(id));
     }
 
     public Publisher update(Publisher obj){

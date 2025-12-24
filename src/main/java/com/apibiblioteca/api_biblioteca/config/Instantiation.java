@@ -120,7 +120,9 @@ public class Instantiation implements CommandLineRunner {
                 BookStatus.RESERVED
         );
 
-        userRepository.saveAll(Arrays.asList(user01, user02));
         bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4, book5));
+
+        userRepository.saveAll(Arrays.asList(user01, user02));
+
     }
 }
