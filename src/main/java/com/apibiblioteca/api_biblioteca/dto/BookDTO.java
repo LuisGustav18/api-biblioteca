@@ -20,14 +20,13 @@ public class BookDTO implements Serializable {
 
     }
 
-    public BookDTO(String id, String title, int releaseYear, String author, String publisherName, String condition, String status) {
+    public BookDTO(String id, String title, int releaseYear, String author, String publisherName, String condition) {
         this.id = id;
         this.title = title;
         this.releaseYear = releaseYear;
         this.author = author;
         this.publisherName = publisherName;
         this.condition = condition;
-        this.status = status;
     }
 
     public BookDTO(Book obj, String namePublisher){
@@ -37,6 +36,5 @@ public class BookDTO implements Serializable {
         this.author = obj.getAuthor();
         this.publisherName = namePublisher;
         this.condition = obj.getCondition().name();
-        this.status = obj.getStatus().name();
     }
 }

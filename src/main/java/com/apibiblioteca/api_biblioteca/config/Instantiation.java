@@ -1,13 +1,9 @@
 package com.apibiblioteca.api_biblioteca.config;
 
-import com.apibiblioteca.api_biblioteca.domain.Book;
-import com.apibiblioteca.api_biblioteca.domain.Publisher;
-import com.apibiblioteca.api_biblioteca.domain.User;
+import com.apibiblioteca.api_biblioteca.domain.*;
 import com.apibiblioteca.api_biblioteca.domain.enums.BookStatus;
 import com.apibiblioteca.api_biblioteca.domain.enums.Condition;
-import com.apibiblioteca.api_biblioteca.repository.BookRepository;
-import com.apibiblioteca.api_biblioteca.repository.PublisherRepository;
-import com.apibiblioteca.api_biblioteca.repository.UserRepository;
+import com.apibiblioteca.api_biblioteca.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Configuration;
@@ -28,6 +24,12 @@ public class Instantiation implements CommandLineRunner {
     private BookRepository bookRepository;
 
     @Autowired
+    private LibraryRepository libraryRepository;
+
+    @Autowired
+    private BookInventoryRepository bookInventoryRepository;
+
+    @Autowired
     private PasswordEncoder encoder;
 
     @Override
@@ -36,6 +38,16 @@ public class Instantiation implements CommandLineRunner {
         userRepository.deleteAll();
         publisherRepository.deleteAll();
         bookRepository.deleteAll();
+        bookInventoryRepository.deleteAll();
+        libraryRepository.deleteAll();
+
+        Library library01 = new Library(null,
+                "Central Biblioteca"
+        );
+
+        Library library02 = new Library(null,
+                "Municipal Bi"
+        );
 
         User user01 = new User(
                 null,
@@ -122,7 +134,35 @@ public class Instantiation implements CommandLineRunner {
 
         bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4, book5));
 
-        userRepository.saveAll(Arrays.asList(user01, user02));
 
+        BookInventory bookInventory01 = new BookInventory(
+                null,
+                book1.getId(),
+                10
+        );
+
+        BookInventory bookInventory02 = new BookInventory(
+                null,
+                book3.getId(),
+                2
+        );
+
+        BookInventory bookInventory03 = new BookInventory(
+                null,
+                book1.getId(),
+                2
+        );
+
+        bookInventoryRepository.saveAll(Arrays.asList(bookInventory01, bookInventory02, bookInventory03));
+
+        library01.getIdBooksInventory().add(bookInventory01.getId());
+
+        library01.getIdBooksInventory().add(bookInventory02.getId());
+
+        library02.getIdBooksInventory().add(bookInventory03.getId());
+
+        libraryRepository.saveAll(Arrays.asList(library01, library02));
+
+        userRepository.saveAll(Arrays.asList(user01, user02));
     }
 }

@@ -51,7 +51,6 @@ public class BookService {
         newObj.setIsbn(obj.getIsbn());
         newObj.setPublisherId(obj.getPublisherId());
         newObj.setCondition(obj.getCondition());
-        newObj.setStatus(obj.getStatus());
     }
 
     public Publisher findPublisher(Book obj){
@@ -69,8 +68,7 @@ public class BookService {
                 obj.getReleaseYear(),
                 obj.getAuthor(),
                 publisher.getName(),
-                obj.getCondition().name(),
-                obj.getStatus().name()
+                obj.getCondition().name()
         );
         return objDto;
     }

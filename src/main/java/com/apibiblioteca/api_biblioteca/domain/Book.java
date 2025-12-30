@@ -21,7 +21,6 @@ public class Book implements Serializable {
     private String author;
     private String publisherId;
     private Condition condition;
-    private BookStatus status;
 
     public Book(){
 
@@ -35,6 +34,5 @@ public class Book implements Serializable {
         this.author = author;
         this.publisherId = publisherId;
         this.condition = condition;
-        this.status = status;
     }
 }
