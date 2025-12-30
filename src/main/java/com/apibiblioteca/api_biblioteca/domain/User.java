@@ -1,6 +1,6 @@
 package com.apibiblioteca.api_biblioteca.domain;
 
-import com.apibiblioteca.api_biblioteca.dto.BookDTO;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -16,8 +16,13 @@ public class User implements Serializable {
 
     @Id
     private String id;
+
+    @NotEmpty
     private String name;
+
     private String email;
+
+    @NotEmpty
     private String password;
 
     @DBRef

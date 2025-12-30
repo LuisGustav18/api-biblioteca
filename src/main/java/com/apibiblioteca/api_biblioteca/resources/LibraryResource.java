@@ -5,6 +5,7 @@ import com.apibiblioteca.api_biblioteca.domain.BookInventory;
 import com.apibiblioteca.api_biblioteca.domain.Library;
 import com.apibiblioteca.api_biblioteca.dto.BookInventoryDTO;
 import com.apibiblioteca.api_biblioteca.dto.LibraryDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class LibraryResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody LibraryDTO objDto){
+    public ResponseEntity<Void> insert(@Valid @RequestBody LibraryDTO objDto){
         Library obj = service.fromDto(objDto);
         obj = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
@@ -43,7 +44,7 @@ public class LibraryResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody LibraryDTO objDto){
+    public ResponseEntity<Void> update(@Valid @PathVariable String id, @RequestBody LibraryDTO objDto){
         objDto.setId(id);
         service.update(service.fromDto(objDto));
         return ResponseEntity.noContent().build();
@@ -63,7 +64,7 @@ public class LibraryResource {
     }
 
     @PostMapping(value = "/{id}/booksinventory")
-    public ResponseEntity<Void> insertBooksInventory(@PathVariable String id, @RequestBody BookInventory obj){
+    public ResponseEntity<Void> insertBooksInventory(@Valid @PathVariable String id, @RequestBody BookInventory obj){
         service.insertBook(id, obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().build().toUri();
         return ResponseEntity.created(uri).build();

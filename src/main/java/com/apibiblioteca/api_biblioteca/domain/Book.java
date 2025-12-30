@@ -1,8 +1,7 @@
 package com.apibiblioteca.api_biblioteca.domain;
 
 import com.apibiblioteca.api_biblioteca.domain.enums.Condition;
-import com.apibiblioteca.api_biblioteca.domain.enums.BookStatus;
-import com.apibiblioteca.api_biblioteca.dto.PublisherDTO;
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -15,18 +14,28 @@ public class Book implements Serializable {
 
     @Id
     private String id;
+
+    @NotEmpty
     private String title;
+
+    @NotEmpty
     private int releaseYear;
+
+    @NotEmpty
     private String isbn;
+
     private String author;
+
+    @NotEmpty
     private String publisherId;
+
     private Condition condition;
 
     public Book(){
 
     }
 
-    public Book(String id, String title, int releaseYear, String isbn, String author, String publisherId, Condition condition, BookStatus status) {
+    public Book(String id, String title, int releaseYear, String isbn, String author, String publisherId, Condition condition) {
         this.id = id;
         this.title = title;
         this.releaseYear = releaseYear;

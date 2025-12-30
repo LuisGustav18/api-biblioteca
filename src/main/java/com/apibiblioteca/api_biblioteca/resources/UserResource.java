@@ -5,6 +5,7 @@ import com.apibiblioteca.api_biblioteca.domain.Book;
 import com.apibiblioteca.api_biblioteca.domain.User;
 import com.apibiblioteca.api_biblioteca.dto.BookDTO;
 import com.apibiblioteca.api_biblioteca.dto.UserDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +37,7 @@ public class UserResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody User obj){
+    public ResponseEntity<Void> insert(@Valid @RequestBody User obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest()
@@ -46,7 +47,7 @@ public class UserResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<User> update(@PathVariable String id, @RequestBody User obj){
+    public ResponseEntity<User> update(@Valid @PathVariable String id, @RequestBody User obj){
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();

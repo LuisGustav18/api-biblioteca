@@ -1,7 +1,6 @@
 package com.apibiblioteca.api_biblioteca.config;
 
 import com.apibiblioteca.api_biblioteca.domain.*;
-import com.apibiblioteca.api_biblioteca.domain.enums.BookStatus;
 import com.apibiblioteca.api_biblioteca.domain.enums.Condition;
 import com.apibiblioteca.api_biblioteca.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,8 +83,7 @@ public class Instantiation implements CommandLineRunner {
                 "9780132350884",
                 "Robert C. Martin",
                 publisher1.getId(),
-                Condition.NEW,
-                BookStatus.AVAILABLE
+                Condition.NEW
         );
 
         Book book2 = new Book(
@@ -95,8 +93,7 @@ public class Instantiation implements CommandLineRunner {
                 "9780134685991",
                 "Joshua Bloch",
                 publisher2.getId(),
-                Condition.GOOD,
-                BookStatus.RESERVED
+                Condition.GOOD
         );
 
         Book book3 = new Book(
@@ -106,8 +103,7 @@ public class Instantiation implements CommandLineRunner {
                 "9780201633610",
                 "Erich Gamma",
                 publisher3.getId(),
-                Condition.FAIR,
-                BookStatus.AVAILABLE
+                Condition.FAIR
         );
 
         Book book4 = new Book(
@@ -117,8 +113,7 @@ public class Instantiation implements CommandLineRunner {
                 "9780134757599",
                 "Martin Fowler",
                 publisher2.getId(),
-                Condition.GOOD,
-                BookStatus.MAINTENANCE
+                Condition.GOOD
         );
 
         Book book5 = new Book(
@@ -128,8 +123,7 @@ public class Instantiation implements CommandLineRunner {
                 "9780321125217",
                 "Eric Evans",
                 publisher1.getId(),
-                Condition.POOR,
-                BookStatus.RESERVED
+                Condition.POOR
         );
 
         bookRepository.saveAll(Arrays.asList(book1, book2, book3, book4, book5));
@@ -160,6 +154,16 @@ public class Instantiation implements CommandLineRunner {
         library01.getIdBooksInventory().add(bookInventory02.getId());
 
         library02.getIdBooksInventory().add(bookInventory03.getId());
+
+        user01.getWishlist().add(book1);
+
+        user01.getWishlist().add(book2);
+
+        user02.getWishlist().add(book3);
+
+        user02.getWishlist().add(book4);
+
+        user02.getWishlist().add(book5);
 
         libraryRepository.saveAll(Arrays.asList(library01, library02));
 

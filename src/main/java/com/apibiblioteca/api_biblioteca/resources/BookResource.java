@@ -3,6 +3,7 @@ package com.apibiblioteca.api_biblioteca.resources;
 import com.apibiblioteca.api_biblioteca.Services.BookService;
 import com.apibiblioteca.api_biblioteca.domain.Book;
 import com.apibiblioteca.api_biblioteca.dto.BookDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,14 +34,14 @@ public class BookResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Book obj){
+    public ResponseEntity<Void> insert(@Valid @RequestBody Book obj){
         Book obk = service.insert(obj);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(obj.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Book> update(@PathVariable String id, @RequestBody Book obj){
+    public ResponseEntity<Book> update(@Valid @PathVariable String id, @RequestBody Book obj){
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();

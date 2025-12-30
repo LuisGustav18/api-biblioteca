@@ -1,5 +1,6 @@
 package com.apibiblioteca.api_biblioteca.domain;
 
+import jakarta.validation.constraints.NotEmpty;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -12,8 +13,13 @@ public class BookInventory implements Serializable {
 
     @Id
     private String id;
+
+    @NotEmpty
     private String idBook;
+
+    @NotEmpty
     private int totalQuantity;
+
     private int availableQuantity;
 
     public BookInventory(){

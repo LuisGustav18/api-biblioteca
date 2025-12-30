@@ -3,6 +3,7 @@ package com.apibiblioteca.api_biblioteca.resources;
 import com.apibiblioteca.api_biblioteca.Services.PublisherService;
 import com.apibiblioteca.api_biblioteca.domain.Publisher;
 import com.apibiblioteca.api_biblioteca.dto.PublisherDTO;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +34,7 @@ public class PublisherResource {
     }
 
     @PostMapping
-    public ResponseEntity<Void> insert(@RequestBody Publisher obj){
+    public ResponseEntity<Void> insert(@Valid @RequestBody Publisher obj){
         service.insert(obj);
         URI uri = ServletUriComponentsBuilder
                 .fromCurrentRequest().path("/{id}")
@@ -42,7 +43,7 @@ public class PublisherResource {
     }
 
     @PutMapping(value = "/{id}")
-    public ResponseEntity<Void> update(@PathVariable String id, @RequestBody Publisher obj){
+    public ResponseEntity<Void> update(@Valid @PathVariable String id, @RequestBody Publisher obj){
         obj.setId(id);
         obj = service.update(obj);
         return ResponseEntity.noContent().build();
